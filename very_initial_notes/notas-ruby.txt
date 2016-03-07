@@ -451,4 +451,57 @@ def unlink(path, opts = {}, &bk)  route 'UNLINK',  path, opts, &bk end
   end
 end
 
-the 
+
+
+APPART:
+========================
+TEXT PROCESSING WITH RUBY:
+===========================
+ARGF:
+
+gather info with:
+.each     => se refiere a cada línea
+.filename => self-explanatory
+.file     => devuelve un objeto file para el fichero que se esté tratando en ese momento
+.lineno   => line num of all the data stream starting from 1
+.file.lineno => the same but file by file.
+
+other tasks:
+.skyp     => skips that file, go to next. (for example, unless ARGF.filename.end_with? ".txt")
+
+(((ruby accepts de command line option -i, to do in-place actions, and also its backup mode with -i'.bak')))
+
+ARGV:
+
+use it for very little scripts.
+For other than modifiers (like -v), it has no sense to use it, but the OptionParser internal library.
+
+
+TSV:
+===========================
+
+gets, readline, each_line, and so on work with the $/ variable (the input record separator).
+$/ = "\n"
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

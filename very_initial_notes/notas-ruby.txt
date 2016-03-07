@@ -2,11 +2,13 @@
 assert
 assert_equal
 NoMethodError
-asignación en paralelo: ejemplo: si hay 3 y pongo dos, solo coge los dos primeros a no ser que el último vaya precedido por * (
+asignación en paralelo: ejemplo: si hay 3 y pongo dos, solo coge los dos 
+primeros a no ser que el último vaya precedido por * (
     first_name, last_name = ["John", "Smith", "III"]
     first_name, *last_name = ["John", "Smith", "III"]
 )
-    si hay varios elementos en array, pero solo una variable, aunque con coma, entonces solo cogerá el primero.
+    si hay varios elementos en array, pero solo una variable, aunque con coma, 
+    entonces solo cogerá el primero.
 
 Arrays:
 =======
@@ -15,7 +17,8 @@ unshift shift
 
 Hashes:
 =======
-si usamos el método fetch para obtener un valor, en caso de q no exista la key, se hará raise del error KeyError.
+si usamos el método fetch para obtener un valor, en caso de q no exista la key,
+ se hará raise del error KeyError.
 Esto es muy útil.
 si no usamos fetch sencillamente obtendríamos nil.
 
@@ -23,9 +26,12 @@ Están desordenados.
 
 con merge, los datos repetidos se actualizan por los proporcionados/nuevos.
 
-inicializando un hash con .new(un_valor), si pedimos el valor de una clave no existente, devolverá ese por defecto.
-Por ello, inicializándolo con Hash.new([]), directamente transforma el Hash en Array (no es cierto, pero sí, porque devuelve siempre el mismo array)
-Y Hash.new {|hash, key| hash[key] = [] }, transformará cada value en un array distinto.
+inicializando un hash con .new(un_valor), si pedimos el valor de una clave no 
+existente, devolverá ese por defecto.
+Por ello, inicializándolo con Hash.new([]), directamente transforma el Hash en 
+Array (no es cierto, pero sí, porque devuelve siempre el mismo array)
+Y Hash.new {|hash, key| hash[key] = [] }, transformará cada value en un array
+ distinto.
 
 Strings:
 ========
@@ -209,19 +215,23 @@ find locates the first element matching a criteria.
 
 while, for, until, break, next, redo and retry
 
-break will stop looping after achieving the condition (but does execute the full current one).
+break will stop looping after achieving the condition (but does execute the 
+full current one).
 
 
 classes:
 ========
-el método .instance_variables devuelve un ARRAY con el nombre de las variables como símbolos.
-se puede acceder a una variable de instancia via .instance_variable_get("@name")
+el método .instance_variables devuelve un ARRAY con el nombre de las variables
+ como símbolos. se puede acceder a una variable de instancia via 
+.instance_variable_get("@name")
 pero también se puede, de manera más invasiva, mediante:
 .instance_eval("@name")
 .instance_eval { @name }
 
-Pero, la manera mediante la cual se accede a variables de instancia es la siguiente:
-se crean métodos accessor que devuelven su valor de manera tradicional: instancia.name
+Pero, la manera mediante la cual se accede a variables de instancia es la 
+siguiente:
+se crean métodos accessor que devuelven su valor de manera tradicional:
+instancia.name
 
 class Dog3
   def set_name(a_name)
@@ -232,7 +242,8 @@ class Dog3
   end
 end
 
-Pero, la forma correcta, es declarando esa variable, como símbolo, como attr_reader
+Pero, la forma correcta, es declarando esa variable, como símbolo, como 
+attr_reader
   class Dog4
     attr_reader :name
 
@@ -241,28 +252,35 @@ Pero, la forma correcta, es declarando esa variable, como símbolo, como attr_re
     end
   end
 
-Por otro lado, si necesitamos tanto set como get de la variable de instancia, lo haremos mediante el uso de attr_accessor :name
-Esto nos permitirá hacer set de la variable desde fuera, y acceder a ella también:
+Por otro lado, si necesitamos tanto set como get de la variable de instancia, 
+lo haremos mediante el uso de attr_accessor :name
+Esto nos permitirá hacer set de la variable desde fuera, y acceder a ella 
+también:
 class Dog5
   attr_accessor :name
 end
 
-Y, para crear una instancia con ciertos valores, directamente, tenemos el método initialize, donde asignamos parámetros a variables de instancia:
+Y, para crear una instancia con ciertos valores, directamente, tenemos el 
+método initialize, donde asignamos parámetros a variables de instancia:
 class Dog6
   attr_reader :name
   def initialize(initial_name)
     @name = initial_name
   end
 end
-Así, los argumentos asociados a .new() tienen que coincidir con los de initialize. ( is no, ArgumentError)
+Así, los argumentos asociados a .new() tienen que coincidir con los de 
+initialize. ( is no, ArgumentError)
 
-self, dentro de un método, hace referencia al objeto que lo contiene, así que devolverá el mismo valor que inspect.
+self, dentro de un método, hace referencia al objeto que lo contiene, así que 
+devolverá el mismo valor que inspect.
 
-to_s se usa para proveer una versión literal del objeto. Puede ser modificado, como todo, por ejemplo: def to_s
+to_s se usa para proveer una versión literal del objeto. Puede ser modificado, 
+como todo, por ejemplo: def to_s
            @name
          end
 
-Es útil, a veces, modificarlo, porque cuando se usa el objeto directamente, en interpolación en una string, se irá a buscar el valor de retorno de to_s
+Es útil, a veces, modificarlo, porque cuando se usa el objeto directamente, en 
+interpolación en una string, se irá a buscar el valor de retorno de to_s
 
 Todos los objetos soportan to_s e inspect.
 
@@ -288,7 +306,8 @@ the parent is known by the class as an ancestor.
 CamelCase.ancestors.include?(Dog)
 all the classes have the following as true:
 CamelCase.ancestors.include?(Object)
-Subclasses also inherit behavior and, of course, add new behavior and modify exiting one.
+Subclasses also inherit behavior and, of course, add new behavior and modify 
+exiting one.
 
 Subclasses can invoke parent behavior via super, like
 class BullDog < Dog
@@ -311,7 +330,9 @@ Se pueden referenciar clases anidadas utilizando el scope_operator.
 Jims::Dog.new
 Joes::Dog.new
 
-Si creamos un método, por ejemplo, llamado String, dentro de esa clase siempre haremos referencia al nuevo. Por ese motivo, si queremos referenciar al método global, podemos usar el operador de alcance ::
+Si creamos un método, por ejemplo, llamado String, dentro de esa clase siempre 
+haremos referencia al nuevo. Por ese motivo, si queremos referenciar al método 
+global, podemos usar el operador de alcance ::
   def test_nested_string_is_not_the_same_as_the_system_string
     assert_equal false, String == "HI".class
   end
@@ -330,14 +351,19 @@ CamelCase.const_get("PI")
 
 Class Methods:
 ==============
-se pueden definir métodos en objetos individuales, sencillamente haciendo, fuera de la clase, en el objeto: def objeto.nuevo_method ... end
-Los otros objetos (instancias de la misma clase) no se verán afectados por el nuevo método singleton.
+se pueden definir métodos en objetos individuales, sencillamente haciendo, 
+fuera de la clase, en el objeto: def objeto.nuevo_method ... end
+Los otros objetos (instancias de la misma clase) no se verán afectados por el 
+nuevo método singleton.
 
-Como las clases son también objetos, pueden definirse métodos singleton en ellas directamente.
+Como las clases son también objetos, pueden definirse métodos singleton en 
+ellas directamente.
 Serían métodos a nivel de clase, no de instancia.
 Clases e instancias, obviamente, no comparten variables de instancia.
 
-Así como podemos definir métodos de clase desde fuera de la clase, también podemos definirlo desde dentro, sencillamente anteponiendo el CamelCase al nombre del método:
+Así como podemos definir métodos de clase desde fuera de la clase, también 
+podemos definirlo desde dentro, sencillamente anteponiendo el CamelCase al 
+nombre del método:
 class Dog
   def Dog.a_class_method
   end
@@ -346,7 +372,8 @@ end
 Los estamentos de clase devuelven el valor de su última expresión.
 
 Self, en una clase, es un objeto de clase, no una instancia.
-Por ello, para crear métodos de clase, podemos usar self.nuevo_method, en vez del CamelCase.
+Por ello, para crear métodos de clase, podemos usar self.nuevo_method, en vez 
+del CamelCase.
 
 Una tercera manera de definir métodos de clase es la siguiente:
   class Dog
@@ -356,17 +383,23 @@ Una tercera manera de definir métodos de clase es la siguiente:
       end
     end
   end
-Definiendo una subclase anónima que hereda de self, y dentro de ella, definiendo los métodos de clase diréctamente, sin la necesidad de especificar de donde provienen.
-Siguiendo esa misma lógica, podemos llamar a métodos de clase desde una instancia usando el método class (porque nos subirá un nivel): instancia.class.class_method
+Definiendo una subclase anónima que hereda de self, y dentro de ella, 
+definiendo los métodos de clase diréctamente, sin la necesidad de especificar 
+de donde provienen.
+Siguiendo esa misma lógica, podemos llamar a métodos de clase desde una 
+instancia usando el método class (porque nos subirá un nivel): 
+instancia.class.class_method
 
 MESSAGE PASSING:
 ================
-se pueden llamar a los métodos diréctamente, pero también podemos invocarlos de manera dinámica, mediante el método .send o .__send__
+se pueden llamar a los métodos diréctamente, pero también podemos invocarlos de
+manera dinámica, mediante el método .send o .__send__
 -por ejemplo-
 instancia.send("nom" + "bre_del_" + num + "method")
 instancia.send(:método)
 
-Disponemos también del método respond_to?(:method_name) para saber si sabrían responder a nuestra pregunta.
+Disponemos también del método respond_to?(:method_name) para saber si sabrían 
+responder a nuestra pregunta.
 
 
 PROXY OBJECT
@@ -420,7 +453,8 @@ def link(path, opts = {}, &bk)    route 'LINK',    path, opts, &bk end
 def unlink(path, opts = {}, &bk)  route 'UNLINK',  path, opts, &bk end
 
 # get, post, put, delete, head, options, patch, link, unlink
-# No olvidemos que, como seguro que más de una vez querremos usar la misma ruta desde diferentes métodos, pueden construirse handlers del tipo:
+# No olvidemos que, como seguro que más de una vez querremos usar la misma ruta
+desde diferentes métodos, pueden construirse handlers del tipo:
 ['/one', '/two', '/three'].each do |route|
   get route do
     "GET"
@@ -454,33 +488,38 @@ end
 
 
 APPART:
-========================
+===============================================================================
 TEXT PROCESSING WITH RUBY:
-===========================
+===============================================================================
 ARGF:
 
 gather info with:
 .each     => se refiere a cada línea
 .filename => self-explanatory
-.file     => devuelve un objeto file para el fichero que se esté tratando en ese momento
+.file     => devuelve un objeto file para el fichero que se esté tratando en 
+             ese momento
 .lineno   => line num of all the data stream starting from 1
 .file.lineno => the same but file by file.
 
 other tasks:
-.skyp     => skips that file, go to next. (for example, unless ARGF.filename.end_with? ".txt")
+.skyp     => skips that file, go to next. 
+             (for example, unless ARGF.filename.end_with? ".txt")
 
-(((ruby accepts de command line option -i, to do in-place actions, and also its backup mode with -i'.bak')))
+(((ruby accepts de command line option -i, to do in-place actions, and also its
+backup mode with -i'.bak')))
 
 ARGV:
 
 use it for very little scripts.
-For other than modifiers (like -v), it has no sense to use it, but the OptionParser internal library.
+For other than modifiers (like -v), it has no sense to use it, but the 
+OptionParser internal library.
 
 
 TSV:
-===========================
+===============================================================================
 
-gets, readline, each_line, and so on work with the $/ variable (the input record separator).
+gets, readline, each_line, and so on work with the $/ variable 
+(the input record separator).
 $/ = "\n"
 
 There's the input record separator too: $; (by default blank-space).
@@ -512,12 +551,12 @@ end
 ```
 
 CSV:
-===========================
+===============================================================================
 The internal ruby library is more than enough.
 
 
 HTML:
-===========================
+===============================================================================
 nokogiri and open-uri.
 
 
@@ -570,8 +609,9 @@ at, %, at_xpath and at_css
   search for the first occurrence and return a Node.
 
 Extracting Information from Elements
-=====================================
-its own text contents, the contents of an attribute, and the name of the element
+===============================================================================
+its own text contents, the contents of an attribute, and the name of the 
+element
 
 Reading an element's text:
 .text method:
@@ -597,12 +637,13 @@ doc.at_css(​"body"​).text
 
 doc.at_css(​"body text()"​).text
   (in XPath would be  body/text() )
-  would return just the content inside body, and not the content from its descendants.
+  would return just the content inside body, and not the content from its 
+  descendants.
 
 
 
 Reading an Element’s Attributes
-================================
+===============================================================================
 .attr
 Doing:
   doc.css(​"img"​).each ​do​ |image|
@@ -616,8 +657,9 @@ Is the same than shortcutting it to []:
 
 
 Reading an Element’s Name
-==========================
-This action is useful when you are under an element with many children and you need different login for a given kind of element.
+===============================================================================
+This action is useful when you are under an element with many children and you
+need different login for a given kind of element.
   doc.css(​"img"​).each ​do​ |image|
     image.name
     ​# => "img"​
@@ -625,7 +667,7 @@ This action is useful when you are under an element with many children and you n
 
 
 Navigating from Nodes
-======================
+===============================================================================
 ```
 list = doc.at_css("ul")
 
@@ -665,8 +707,8 @@ doc.css("img").each do |img|
             end
 
   Image.new(file, caption)
-  ```
-  
+```
+
 
 
 

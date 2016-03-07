@@ -483,10 +483,190 @@ TSV:
 gets, readline, each_line, and so on work with the $/ variable (the input record separator).
 $/ = "\n"
 
+There's the input record separator too: $; (by default blank-space).
+
+```
+$/ = "\n"
+$; = "\t"
+
+File.open(data/file.tsv) do |file|
+  file.each do |record|
+    record.chomp.split do |field|
+      ...
+    end
+  end
+end
+
+```
+```
+File.open("data/shopping.tsv") do |file|
+  cheese_total = file.each_line
+    .map         { |line| line.chomp.split("\t") }
+    .select      { |_, _, shop| shop == "Cheese Shop" }
+    .map         { |_, price, _| price }
+    .reduce(0.0) { |total, price| total + price[1..-1].to_f }
+    .round(2)
+
+  puts "£#{cheese_total}"
+end
+```
+
+CSV:
+===========================
+The internal ruby library is more than enough.
+
+
+HTML:
+===========================
+nokogiri and open-uri.
+
+
+XPath and CSS selectors:
+TAGS:
+  xpath: 
+    - //article//p/img
+  css:
+    - article p > img
+
+
+ATTRS:
+  xpath: 
+    - //div[@class="container"]
+    - //div[starts-with(@class, "container")]
+    - //div[starts-with(@class, "con")]
+    - //div[starts-with(@class, "c")]
+    - //div[contains(@class, "container")]
+    - //div[contains(@class, "ontainer")]
+    - //div[contains(@class, "ntai")]
+  css:
+    - img[src]
+    - div[class="container"]
+    - div[class^="container"]
+    - div[class^="con"]
+    - div[class^="c"]
+    - div[class*="container"]
+    - div[class*="ontainer"]
+    - div[class*="ntai"]
+    - div[class$="ainer"]
+    - div[class~="container"]
+    - div.container
+    - div#main
+
+
+MULTIPLE:
+  xpath:
+    - //p/img | //li/img
+  css:
+    - p > img, li > img
+
+
+doc.xpath(​"//p//img"​)
+doc.css(​"p img"​)
+doc.xpath(​"//p"​).css(​"img"​)
+
+search, /, xpath and css
+  all search for every occurrence of the accessor and return a NodeSet.
+at, %, at_xpath and at_css
+  search for the first occurrence and return a Node.
+
+Extracting Information from Elements
+=====================================
+its own text contents, the contents of an attribute, and the name of the element
+
+Reading an element's text:
+.text method:
+
+doc = Nokogiri::HTML(<<-DOC)
+​<html>​
+​<body>​
+​  <h2>This is a heading</h2>​
+​  <p>This is a paragraph</p>​
+  <h2>This is also a heading</h2>​
+​  <p>This is also a paragraph</p>​
+​</body>​
+​</html>​
+​DOC​
+
+doc.css('h2').each do |heading|
+  heading.text
+end
+
+
+doc.at_css(​"body"​).text
+  would return all the content inside body, also from descendant tags.
+
+doc.at_css(​"body text()"​).text
+  (in XPath would be  body/text() )
+  would return just the content inside body, and not the content from its descendants.
 
 
 
+Reading an Element’s Attributes
+================================
+.attr
+Doing:
+  doc.css(​"img"​).each ​do​ |image|
+    puts image.attr(​"src"​)
+  ​end​
 
+Is the same than shortcutting it to []:
+  doc.css(​"img"​).each ​do​ |image|
+    puts image[​"src"​]
+  ​end​
+
+
+Reading an Element’s Name
+==========================
+This action is useful when you are under an element with many children and you need different login for a given kind of element.
+  doc.css(​"img"​).each ​do​ |image|
+    image.name
+    ​# => "img"​
+  ​end​
+
+
+Navigating from Nodes
+======================
+```
+list = doc.at_css("ul")
+
+list_item = list.children.first
+list_item.name                    # => "li"
+
+list_item.parent.name             # => "ul"
+```
+
+or:
+
+```
+first_li = doc.at_css("li")
+
+second_li = first_li.next_sibling
+second_li.text
+# => "List item two"
+
+first_li = second_li.previous_sibling
+first_li.text
+# => "List item one"
+```
+
+
+
+or:
+```
+Image = Struct.new(:file, :caption)
+
+doc.css("img").each do |img|
+  file = img["src"]
+
+  caption = if img.next_sibling.name == "figcaption"
+              img.next_sibling.text
+            else
+              "No caption"
+            end
+
+  Image.new(file, caption)
+  ```
+  
 
 
 

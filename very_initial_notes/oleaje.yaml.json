@@ -6,7 +6,7 @@
     "email": "ruben.ibc@gmail.com",
     "phone": "+34616095379",
     "website": "http://cort.as/cqLt",
-    "summary": "Rubén hails from Terrassa, but he lives in Barcelona. He has earned degrees from the University of Barcelona, and some other titulations from different accademies. Before starting as a Devops for software architecture, he worked for Onelink as a web developer and web operations. While his work focuses on optimizing time consuming tasks with scripted engines, his non-work interests range widely, everything from unix computing to renaissance literature. He thinks that Ruby is the most beautiful programming language ever, but never forgets that bash, the unfriendly friend, knows how to do a lot of things efficiently, you just have to understand him.",
+    "summary": "Rubén hails from Terrassa, but he lives in Barcelona. He has earned degrees from the University of Barcelona, and some other titulations from different accademies. Before starting as a Devops for software architecture, he worked for Onelink as a web developer and web operations. While his work focuses on optimizing time consuming tasks with scripted engines, his non-work interests range widely, everything from unix computing to renaissance literature. He thinks that Ruby is the most beautiful programming language ever, but never forgets that bash, the unfriendly friend, knows how to do a lot of things efficiently, you just have to count on him. The command line is his natural biosphere.",
     "location": {
       "address": "Consell de Cent, 471, 6-4",
       "postalCode": "08026",
@@ -50,12 +50,11 @@
       "endDate": "2015-10-12",
       "summary": "Webmaster and web operations scripter on RHEL proxy servers.",
       "highlights": [
-        "Based on the command line.",    
         "Client = project (1-1) infrastructure, so agile methodologies based on Jira.",
         "Build several automation scripts, almost one per project, being the most important one the standarization of client configurations via setup scripts.",
         "Daily use of Subversion",
         "Apache and Nginx configuration",
-        "Web debugger and developper on the front-end of big sites: (http://de.davidoff.ch/ ; http://www.premierinn.es/ ; http://www.fisherandpaykel.cn/ ; ...)"
+        "Front-end web debugger and developper on big sites: (http://de.davidoff.ch/ ; http://www.premierinn.es/ ; http://www.fisherandpaykel.cn/ ; ...)"
       ]
     },
     {

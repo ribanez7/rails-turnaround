@@ -555,6 +555,20 @@ CSV:
 The internal ruby library is more than enough.
 
 
+OTHER THINGS ABUT CLI RUBY
+===============================================================================
+-F => refers to $;
+-0(nums) => refers to $/
+  examples:
+    -015 is "\r"
+    -00 are paragraphs
+    -0777 is the whole text as a unit.
+-l => adds the EOL
+-r[library] => requires a library
+
+
+
+
 HTML:
 ===============================================================================
 nokogiri and open-uri.

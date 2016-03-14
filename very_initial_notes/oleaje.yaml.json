@@ -38,7 +38,8 @@
       "highlights": [
         "Calculate the requirements for newcoming servers.",
         "Development of a library that allows working with yaml files via bash scripting.",
-        "Design of a suite of scripts for servers validation, QA and monitoring."
+        "Design of a suite of scripts for servers validation, QA and monitoring.",
+        "Implementation of a git repository for the scripts code control."
       ]
     },
     {
@@ -47,11 +48,14 @@
       "website": "http://translations.com/globallink/products/onelink.html",
       "startDate": "2013-12-02",
       "endDate": "2015-10-12",
-      "summary": "",
+      "summary": "Webmaster and web operations scripter on RHEL proxy servers.",
       "highlights": [
-        "Build an algorithm for artist to detect if their music was violating copy right infringement laws",
-        "Successfully won Techcrunch Disrupt",
-        "Optimized an algorithm that holds the current world record for Weisman Scores"
+        "Based on the command line.",    
+        "Client = project (1-1) infrastructure, so agile methodologies based on Jira.",
+        "Build several automation scripts, almost one per project, being the most important one the standarization of client configurations via setup scripts.",
+        "Daily use of Subversion",
+        "Apache and Nginx configuration",
+        "Web debugger and developper on the front-end of big sites: (http://de.davidoff.ch/ ; http://www.premierinn.es/ ; http://www.fisherandpaykel.cn/ ; ...)"
       ]
     },
     {
